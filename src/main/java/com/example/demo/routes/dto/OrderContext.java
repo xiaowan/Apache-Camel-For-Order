@@ -1,7 +1,7 @@
 package com.example.demo.routes.dto;
 
-import com.example.demo.input.CommonOrder;
-import com.example.demo.input.internal.*;
+import com.example.demo.params.CommonOrder;
+import com.example.demo.params.internal.*;
 import lombok.Data;
 
 import java.util.ArrayList;

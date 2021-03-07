@@ -1,6 +1,6 @@
 package com.example.demo.clients.pre;
 
-import com.example.demo.input.pre.PreActualOrder;
+import com.example.demo.params.pre.PreActualOrder;
 import com.example.demo.routes.dto.OrderContext;
 
 /**

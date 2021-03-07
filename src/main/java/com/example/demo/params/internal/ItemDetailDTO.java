@@ -1,4 +1,4 @@
-package com.example.demo.input.internal;
+package com.example.demo.params.internal;
 
 import lombok.Data;
 

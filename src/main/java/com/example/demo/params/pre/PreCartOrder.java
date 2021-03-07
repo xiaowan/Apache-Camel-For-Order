@@ -1,4 +1,4 @@
-package com.example.demo.input.pre;
+package com.example.demo.params.pre;
 
 /**
  * @author licong

@@ -1,6 +1,6 @@
 package com.example.demo.clients.submit;
 
-import com.example.demo.input.submit.SubmitActualOrder;
+import com.example.demo.params.submit.SubmitActualOrder;
 import com.example.demo.routes.dto.OrderContext;
 
 /**

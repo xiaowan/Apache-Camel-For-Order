@@ -1,12 +1,7 @@
 package com.example.demo.routes;
 
-import com.example.demo.input.*;
-import org.apache.camel.Exchange;
-import org.apache.camel.Predicate;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 /**
  * 预订单

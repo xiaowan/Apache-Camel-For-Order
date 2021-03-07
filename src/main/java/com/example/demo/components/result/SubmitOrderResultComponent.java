@@ -1,7 +1,6 @@
 package com.example.demo.components.result;
 
-import com.example.demo.input.internal.PreOrderResultDTO;
-import com.example.demo.input.internal.SubmitOrderResultDTO;
+import com.example.demo.params.internal.SubmitOrderResultDTO;
 import com.example.demo.routes.dto.IProcessor;
 import com.example.demo.routes.dto.OrderContext;
 import org.apache.camel.Exchange;

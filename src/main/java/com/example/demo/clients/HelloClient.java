@@ -1,8 +1,5 @@
 package com.example.demo.clients;
 
-import com.example.demo.input.pre.PreVirtualOrder;
-import org.apache.camel.Produce;
-
 import java.util.List;
 
 /**

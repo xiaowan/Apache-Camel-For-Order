@@ -1,7 +1,7 @@
 package com.example.demo.components.order;
 
-import com.example.demo.input.internal.ItemDetailDTO;
-import com.example.demo.input.internal.MerchantItemDTO;
+import com.example.demo.params.internal.ItemDetailDTO;
+import com.example.demo.params.internal.MerchantItemDTO;
 import com.example.demo.routes.dto.IProcessor;
 import com.example.demo.routes.dto.OrderContext;
 import org.apache.camel.Exchange;

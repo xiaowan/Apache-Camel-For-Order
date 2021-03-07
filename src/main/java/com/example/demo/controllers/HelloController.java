@@ -2,9 +2,9 @@ package com.example.demo.controllers;
 
 import com.example.demo.clients.pre.PreActualOrderClient;
 import com.example.demo.clients.submit.SubmitActualOrderClient;
-import com.example.demo.input.SubmitItemInfoDTO;
-import com.example.demo.input.pre.PreActualOrder;
-import com.example.demo.input.submit.SubmitActualOrder;
+import com.example.demo.params.SubmitItemInfoDTO;
+import com.example.demo.params.pre.PreActualOrder;
+import com.example.demo.params.submit.SubmitActualOrder;
 import com.example.demo.routes.dto.OrderContext;
 import org.apache.camel.Produce;
 import org.springframework.web.bind.annotation.GetMapping;

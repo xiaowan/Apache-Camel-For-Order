@@ -13,20 +13,15 @@ import com.example.demo.components.saveorder.AfterSubmitOrderComponent;
 import com.example.demo.components.saveorder.PreLockFundComponent;
 import com.example.demo.components.saveorder.PreLockStockComponent;
 import com.example.demo.components.saveorder.SaveOrderComponent;
-import com.example.demo.input.*;
-import com.example.demo.input.pre.PreActualOrder;
-import com.example.demo.input.pre.PreCartOrder;
-import com.example.demo.input.pre.PreOrder;
-import com.example.demo.input.pre.PreVirtualOrder;
-import com.example.demo.input.submit.*;
-import com.example.demo.routes.dto.OrderContext;
+import com.example.demo.params.*;
+import com.example.demo.params.pre.PreCartOrder;
+import com.example.demo.params.pre.PreOrder;
+import com.example.demo.params.submit.*;
 import org.apache.camel.Exchange;
 import org.apache.camel.Predicate;
-import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import java.util.List;
 
 /**
  * 预订单/下单核心流程

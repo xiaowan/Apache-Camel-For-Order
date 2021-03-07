@@ -1,6 +1,4 @@
-package com.example.demo.input.pre;
-
-import com.example.demo.input.CommonOrder;
+package com.example.demo.params.pre;
 
 /**
  * @author licong
