@@ -1,0 +1,1 @@
+rebuild order-center using apache camel
