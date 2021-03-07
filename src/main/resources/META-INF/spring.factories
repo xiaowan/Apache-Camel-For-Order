@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.apache.camel.spring.boot.actuate.endpoint.CamelRoutesEndpointAutoConfiguration,\
+org.apache.camel.spring.boot.actuate.endpoint.CamelRouteControllerEndpointAutoConfiguration
