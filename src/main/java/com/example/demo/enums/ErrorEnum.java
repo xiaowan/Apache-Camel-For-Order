@@ -6,6 +6,8 @@ package com.example.demo.enums;
  */
 public enum ErrorEnum {
     PARAM_ERROR(1001, "参数错误"),
+    SUBMIT_ORDER_ERROR(1002, "下单异常"),
+    PRE_ORDER_ERROR(1003, "预订单异常"),
     ;
 
     ErrorEnum(Integer code, String msg) {
