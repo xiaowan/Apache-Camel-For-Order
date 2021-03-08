@@ -98,7 +98,7 @@ public class SubmitOrderRoute extends RouteBuilder {
         //.bean("拆单")
         /**如果是预订单，直接返回，如果是提交订单，执行后续流程*/
         .choice()
-            .when().exchange(exchange -> exchange.getIn().getHeader("operationType").equals(PreOrder.class.getSimpleName()))
+            .when(header("operationType").isEqualTo(PreOrder.class.getSimpleName()))
                 .bean(preOrderResultComponent)
             .otherwise()
                 .enrich("direct:saveOrder")
