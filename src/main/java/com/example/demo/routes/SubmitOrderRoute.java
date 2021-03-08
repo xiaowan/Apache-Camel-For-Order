@@ -73,8 +73,9 @@ public class SubmitOrderRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
-        /**聚合下单入参*/
+        /**聚合下单入参,目前该流程未开启事务，如需开启，需spring配置事务管理器*/
         from("direct:aggregationInputOrderParam")
+            // .transacted()
             .choice()
                 .when(bodyAs(PreCartOrder.class))
                 .when(bodyAs(SubmitCartOrder.class))
@@ -117,6 +118,7 @@ public class SubmitOrderRoute extends RouteBuilder {
         ;
 
         /**营销组件*/
+        /**此处考虑使用routingSlip重构*/
         from("direct:useDiscount")
             .bean(useFundDiscountComponent)
             .bean(useCouponComponent)
