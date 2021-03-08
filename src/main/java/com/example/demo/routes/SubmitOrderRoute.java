@@ -76,13 +76,9 @@ public class SubmitOrderRoute extends RouteBuilder {
         /**聚合下单入参*/
         from("direct:aggregationInputOrderParam")
             .choice()
-                .when().exchange(exchange -> {
-                    CommonOrder commonOrder = exchange.getIn().getBody(CommonOrder.class);
-                    if (commonOrder instanceof PreCartOrder || commonOrder instanceof SubmitCartOrder) {
-                        return true;
-                    }
-                    return false;
-                }).bean(orderInputParamConvertComponent, "generateSubmitCartItemInfo")
+                .when(bodyAs(PreCartOrder.class))
+                .when(bodyAs(SubmitCartOrder.class))
+                    .bean(orderInputParamConvertComponent, "generateSubmitCartItemInfo")
                 .otherwise()
                     .bean(orderInputParamConvertComponent, "generateSubmitItemInfo")
             .end()
