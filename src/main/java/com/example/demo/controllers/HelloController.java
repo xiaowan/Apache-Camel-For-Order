@@ -1,6 +1,5 @@
 package com.example.demo.controllers;
 
-import com.example.demo.clients.HelloClient;
 import com.example.demo.clients.pre.PreActualOrderClient;
 import com.example.demo.clients.submit.SubmitActualOrderClient;
 import com.example.demo.params.SubmitItemInfoDTO;

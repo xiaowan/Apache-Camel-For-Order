@@ -1,9 +1,11 @@
 package com.example.demo.routes;
 
 import com.example.demo.routes.dto.OrderContext;
-import org.apache.camel.Exchange;
-import org.apache.camel.Header;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author licong
@@ -12,6 +14,12 @@ import org.apache.camel.Header;
 public class UseDiscount {
 
     public String useDiscountMethod(OrderContext orderContext) {
-        return "bean:useMemberDiscountComponent";
+        List<String> beans = new ArrayList<>();
+        beans.add("bean:useMemberDiscountComponent");
+        beans.add("bean:useCouponComponent");
+        beans.add("bean:useFundDiscountComponent");
+        beans.add("bean:useGoldDiscountComponent");
+        Collections.shuffle(beans);
+        return beans.stream().collect(Collectors.joining(","));
     }
 }
