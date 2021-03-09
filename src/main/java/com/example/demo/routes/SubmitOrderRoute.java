@@ -82,8 +82,7 @@ public class SubmitOrderRoute extends RouteBuilder {
                 .when(header("operationType").isEqualTo(PreOrder.class.getSimpleName()))
                     .bean(preOrderResultComponent)
                 .otherwise().enrich("direct:saveOrder")
-            .end()
-        ;
+            .end();
 
         /**下单校验，包含itemDetail有效性，收货地址有效性等*/
         from("direct:checkAvailability")
@@ -97,14 +96,11 @@ public class SubmitOrderRoute extends RouteBuilder {
                 }
             }).bean(productComponent)
             .end()
-            .bean(productComponent, "checkInvalidItemDetail")
-        ;
+            .bean(productComponent, "checkInvalidItemDetail");
 
         /**营销组件*/
-        /**此处考虑使用routingSlip重构*/
         from("direct:useDiscount")
-            .routingSlip().method(UseDiscount.class, "useDiscountMethod")
-        ;
+            .routingSlip().method(UseDiscount.class, "useDiscountMethod");
 
         /**提交订单后续流程*/
         from("direct:saveOrder")
