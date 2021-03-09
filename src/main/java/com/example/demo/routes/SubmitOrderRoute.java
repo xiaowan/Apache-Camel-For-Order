@@ -88,13 +88,13 @@ public class SubmitOrderRoute extends RouteBuilder {
         from("direct:checkAvailability")
             // .bean("收货地址是否有效")
             .choice()
-            .when(new Predicate() {
-                @Override
-                public boolean matches(Exchange exchange) {
-                    /**判断是否需要检查库存*/
-                    return false;
-                }
-            }).bean(productComponent)
+                .when(new Predicate() {
+                    @Override
+                    public boolean matches(Exchange exchange) {
+                        /**判断是否需要检查库存*/
+                        return false;
+                    }
+                }).bean(productComponent)
             .end()
             .bean(productComponent, "checkInvalidItemDetail");
 
