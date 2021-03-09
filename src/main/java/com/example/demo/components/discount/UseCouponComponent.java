@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @author licong
  * @date 2021/3/6 下午10:34
  */
-@Component
+@Component("useCouponComponent")
 public class UseCouponComponent implements IProcessor<OrderContext> {
     @Override
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {

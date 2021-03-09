@@ -24,4 +24,13 @@ public class ErrorHandler {
         return commonResult;
     }
 
+    @ExceptionHandler(Exception.class)
+    @ResponseBody
+    public CommonResult handleApiException(HttpServletRequest request, Exception exception) {
+        CommonResult commonResult = new CommonResult();
+        commonResult.setCode(500);
+        commonResult.setMsg(exception.getMessage());
+        return commonResult;
+    }
+
 }
