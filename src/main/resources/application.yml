@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: order-center
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    servlet:
+      load-on-startup: 1
+
+camel:
+  springboot:
+    auto-startup: true
+    name: ${spring.application.name}
+    message-history: false
+

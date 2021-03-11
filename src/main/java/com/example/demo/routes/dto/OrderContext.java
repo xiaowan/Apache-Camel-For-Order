@@ -35,10 +35,5 @@ public class  OrderContext {
     /**提交订单后续动作*/
     private List<String> submitOrderOption = new ArrayList<>();
 
-    /**预订单结果返回*/
-    private PreOrderResultDTO preOrderResultDTO;
-
-    /**提交订单结果返回*/
-    private SubmitOrderResultDTO submitOrderResultDTO;
 
 }

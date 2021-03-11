@@ -1,11 +1,12 @@
 package com.example.demo.clients.pre;
 
-import com.example.demo.routes.dto.OrderContext;
+import com.example.demo.params.internal.PreOrderResultDTO;
+import com.example.demo.params.pre.PreVirtualOrder;
 
 /**
  * @author licong
  * @date 2021/3/5 上午9:58
  */
 public interface PreVirtualOrderClient {
-    OrderContext preVirtualOrder(OrderContext orderContext);
+    PreOrderResultDTO preVirtualOrder(PreVirtualOrder preVirtualOrder);
 }

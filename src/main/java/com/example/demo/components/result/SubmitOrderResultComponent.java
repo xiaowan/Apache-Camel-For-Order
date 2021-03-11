@@ -20,7 +20,7 @@ public class SubmitOrderResultComponent implements IProcessor<OrderContext> {
         submitOrderResultDTO.setDiscountComponent(orderContext.getDiscountComponent());
         submitOrderResultDTO.setSubmitOrderOption(orderContext.getSubmitOrderOption());
         submitOrderResultDTO.setInvalidItemDetailDTOS(orderContext.getInvalidItemDetailDTOS());
-        orderContext.setSubmitOrderResultDTO(submitOrderResultDTO);
 
+        exchange.getIn().setBody(submitOrderResultDTO, SubmitOrderResultDTO.class);
     }
 }

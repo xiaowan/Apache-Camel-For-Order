@@ -7,6 +7,7 @@ import com.example.demo.params.pre.PreActualOrder;
 import com.example.demo.params.submit.SubmitActualOrder;
 import com.example.demo.routes.dto.OrderContext;
 import org.apache.camel.Produce;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,8 +38,7 @@ public class HelloController {
         submitItemInfoDTO.setPriceId(432554L);
         submitItemInfoDTOS.add(submitItemInfoDTO);
         preActualOrder.setSubmitItemInfoDTOList(submitItemInfoDTOS);
-        OrderContext orderContext = preActualOrderClient.preActualOrder(preActualOrder);
-        return orderContext.getPreOrderResultDTO();
+        return preActualOrderClient.preActualOrder(preActualOrder);
     }
 
     @GetMapping("/submitOrder")
@@ -52,8 +52,6 @@ public class HelloController {
         submitItemInfoDTO.setPriceId(432554L);
         submitItemInfoDTOS.add(submitItemInfoDTO);
         submitActualOrder.setSubmitItemInfoDTOList(submitItemInfoDTOS);
-        OrderContext orderContext = submitActualOrderClient.submitActualOrder(submitActualOrder);
-        return orderContext.getSubmitOrderResultDTO();
+        return submitActualOrderClient.submitActualOrder(submitActualOrder);
     }
-
 }
