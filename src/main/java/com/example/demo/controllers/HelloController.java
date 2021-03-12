@@ -3,6 +3,8 @@ package com.example.demo.controllers;
 import com.example.demo.clients.pre.PreActualOrderClient;
 import com.example.demo.clients.submit.SubmitActualOrderClient;
 import com.example.demo.params.SubmitItemInfoDTO;
+import com.example.demo.params.internal.PreOrderResultDTO;
+import com.example.demo.params.internal.SubmitOrderResultDTO;
 import com.example.demo.params.pre.PreActualOrder;
 import com.example.demo.params.submit.SubmitActualOrder;
 import com.example.demo.routes.dto.OrderContext;
@@ -28,7 +30,7 @@ public class HelloController {
     private SubmitActualOrderClient submitActualOrderClient;
 
     @GetMapping("/preOrder")
-    public Object preOrder() {
+    public PreOrderResultDTO preOrder() {
         PreActualOrder preActualOrder = new PreActualOrder();
         List<SubmitItemInfoDTO> submitItemInfoDTOS = new ArrayList<>();
         SubmitItemInfoDTO submitItemInfoDTO = new SubmitItemInfoDTO();
@@ -42,7 +44,7 @@ public class HelloController {
     }
 
     @GetMapping("/submitOrder")
-    public Object submitOrder() {
+    public SubmitOrderResultDTO submitOrder() {
         SubmitActualOrder submitActualOrder = new SubmitActualOrder();
         List<SubmitItemInfoDTO> submitItemInfoDTOS = new ArrayList<>();
         SubmitItemInfoDTO submitItemInfoDTO = new SubmitItemInfoDTO();
