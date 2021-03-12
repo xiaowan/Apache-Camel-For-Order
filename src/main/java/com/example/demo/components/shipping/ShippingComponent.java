@@ -14,6 +14,6 @@ import org.springframework.stereotype.Component;
 public class ShippingComponent implements IProcessor<OrderContext> {
     @Override
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
-
+        System.out.println(orderContext);
     }
 }

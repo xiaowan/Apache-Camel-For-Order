@@ -9,9 +9,12 @@ import com.example.demo.components.saveorder.AfterSubmitOrderComponent;
 import com.example.demo.components.saveorder.PreLockFundComponent;
 import com.example.demo.components.saveorder.PreLockStockComponent;
 import com.example.demo.components.saveorder.SaveOrderComponent;
+import com.example.demo.components.shipping.ShippingComponent;
 import com.example.demo.params.pre.PreCartOrder;
 import com.example.demo.params.pre.PreOrder;
 import com.example.demo.params.submit.*;
+import com.example.demo.routes.predicate.ShippingPredicate;
+import com.example.demo.routes.predicate.UseDiscount;
 import org.apache.camel.Exchange;
 import org.apache.camel.Predicate;
 import org.apache.camel.builder.RouteBuilder;
@@ -32,6 +35,9 @@ public class SubmitOrderRoute extends RouteBuilder {
 
     @Autowired
     private ProductComponent productComponent;
+
+    @Autowired
+    private ShippingComponent shippingComponent;
 
     @Autowired
     private ShopComponent shopComponent;
@@ -75,7 +81,8 @@ public class SubmitOrderRoute extends RouteBuilder {
             //.bean("按照商家维度聚合itemDetail")
             /**营销流程*/
             .enrich("direct:useDiscount")
-            //.bean("获取运费，均摊运费")
+            // 获取运费，均摊运费
+            .filter().method(ShippingPredicate.class).bean(shippingComponent).end()
             //.bean("拆单")
             /**如果是预订单，直接返回，如果是提交订单，执行后续流程*/
             .choice()

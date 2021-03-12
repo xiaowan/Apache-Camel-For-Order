@@ -1,11 +1,13 @@
 package com.example.demo.controllers;
 
 import com.example.demo.clients.pre.PreActualOrderClient;
+import com.example.demo.clients.pre.PreVirtualOrderClient;
 import com.example.demo.clients.submit.SubmitActualOrderClient;
 import com.example.demo.params.SubmitItemInfoDTO;
 import com.example.demo.params.internal.PreOrderResultDTO;
 import com.example.demo.params.internal.SubmitOrderResultDTO;
 import com.example.demo.params.pre.PreActualOrder;
+import com.example.demo.params.pre.PreVirtualOrder;
 import com.example.demo.params.submit.SubmitActualOrder;
 import com.example.demo.routes.dto.OrderContext;
 import org.apache.camel.Produce;
@@ -26,8 +28,25 @@ public class HelloController {
     @Produce("direct:preActualOrder")
     private PreActualOrderClient preActualOrderClient;
 
+    @Produce("direct:preVirtualOrder")
+    private PreVirtualOrderClient preVirtualOrderClient;
+
     @Produce("direct:submitActualOrder")
     private SubmitActualOrderClient submitActualOrderClient;
+
+    @GetMapping("/preVirtualOrder")
+    public PreOrderResultDTO preVirtualOrder() {
+        PreVirtualOrder preVirtualOrder = new PreVirtualOrder();
+        List<SubmitItemInfoDTO> submitItemInfoDTOS = new ArrayList<>();
+        SubmitItemInfoDTO submitItemInfoDTO = new SubmitItemInfoDTO();
+        submitItemInfoDTO.setItemCode("23ead980xaa3");
+        submitItemInfoDTO.setNum(5);
+        submitItemInfoDTO.setActivityId(2000L);
+        submitItemInfoDTO.setPriceId(432554L);
+        submitItemInfoDTOS.add(submitItemInfoDTO);
+        preVirtualOrder.setSubmitItemInfoDTOList(submitItemInfoDTOS);
+        return preVirtualOrderClient.preVirtualOrder(preVirtualOrder);
+    }
 
     @GetMapping("/preOrder")
     public PreOrderResultDTO preOrder() {
