@@ -14,7 +14,7 @@ import com.example.demo.params.pre.PreCartOrder;
 import com.example.demo.params.pre.PreOrder;
 import com.example.demo.params.submit.*;
 import com.example.demo.routes.predicate.ShippingPredicate;
-import com.example.demo.routes.predicate.UseDiscount;
+import com.example.demo.routes.predicate.UseDiscountPredicate;
 import org.apache.camel.Exchange;
 import org.apache.camel.Predicate;
 import org.apache.camel.builder.RouteBuilder;
@@ -107,7 +107,7 @@ public class SubmitOrderRoute extends RouteBuilder {
 
         /**营销组件*/
         from("direct:useDiscount")
-            .routingSlip().method(UseDiscount.class, "useDiscountMethod");
+            .routingSlip().method(UseDiscountPredicate.class);
 
         /**提交订单后续流程*/
         from("direct:saveOrder")
