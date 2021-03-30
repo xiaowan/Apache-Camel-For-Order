@@ -6,6 +6,8 @@ spring:
   mvc:
     servlet:
       load-on-startup: 1
+  profiles:
+    active: default
 
 camel:
   springboot:
