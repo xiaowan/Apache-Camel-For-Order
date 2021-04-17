@@ -11,6 +11,12 @@ import java.util.List;
 @Data
 public class CommonOrder {
 
+    /**业务线*/
+    private String bizId;
+
+    /**订单类型*/
+    private String orderType;
+
     /**提交订单item入参*/
     private List<SubmitItemInfoDTO> submitItemInfoDTOList;
 }

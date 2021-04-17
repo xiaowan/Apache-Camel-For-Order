@@ -25,5 +25,12 @@ public class GlobalConfiguration {
     /**MQ 配置*/
     private Mq mq;
 
+    /**
+     * 获取指定业务线的订单配置
+     */
+    public OrderConfiguration getOrderConfiguration(String bizId) {
+        return orderConfiguration.getOrDefault(bizId, null);
+    }
+
 
 }

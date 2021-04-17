@@ -30,24 +30,17 @@ order:
         -
           orderType: COMMON
           discountComponent:
-            - bean:useCouponComponent
-            - bean:useFundDiscountComponent
             - bean:useGoldDiscountComponent
             - bean:useMemberDiscountComponent
-        -
-          orderType: INQUIRY
-          discountComponent:
             - bean:useCouponComponent
             - bean:useFundDiscountComponent
-            - bean:useGoldDiscountComponent
-            - bean:useMemberDiscountComponent
       itemChecks:
         -
           orderType: COMMON
           itemCheckComponent:
-            - bean:MerchantCheckComponent
-            - bean:ItemCheckComponent
-            - bean:ItemPriceComponent
+            - bean:merchantItemCheckComponent
+            - bean:stockItemCheckComponent
+            - bean:itemPriceCheckComponent
       cartLimit:
         singleItemLimit: 99
         cartItemLimit: 99
@@ -59,24 +52,12 @@ order:
         -
           orderType: COMMON
           orderAmount: 100
-        -
-          orderType: INQUIRY
-          orderAmount: 200
-
       stockCheck:
         -
           orderType: COMMON
           checkStock: true
           lockStock: true
-        -
-          orderType: INQUIRY
-          checkStock: true
-          lockStock: false
-
       autoConfirmDelay:
         -
           orderType: COMMON
           confirmSeconds: 200
-        -
-          orderType: INQUIRY
-          confirmSeconds: 500

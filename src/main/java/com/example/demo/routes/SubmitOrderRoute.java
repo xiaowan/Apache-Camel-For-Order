@@ -13,6 +13,7 @@ import com.example.demo.components.shipping.ShippingComponent;
 import com.example.demo.params.pre.PreCartOrder;
 import com.example.demo.params.pre.PreOrder;
 import com.example.demo.params.submit.*;
+import com.example.demo.routes.predicate.ItemCheckPredicate;
 import com.example.demo.routes.predicate.ShippingPredicate;
 import com.example.demo.routes.predicate.UseDiscountPredicate;
 import org.apache.camel.Exchange;
@@ -77,7 +78,7 @@ public class SubmitOrderRoute extends RouteBuilder {
             .bean(productComponent)
             /**调用商家中心，获取店铺详情，按店铺分组item*/
             .bean(shopComponent)
-            .enrich("direct:checkAvailability")
+            .enrich("direct:itemCheck")
             //.bean("按照商家维度聚合itemDetail")
             /**营销流程*/
             .enrich("direct:useDiscount")
@@ -92,17 +93,8 @@ public class SubmitOrderRoute extends RouteBuilder {
             .end();
 
         /**下单校验，包含itemDetail有效性，收货地址有效性等*/
-        from("direct:checkAvailability")
-            // .bean("收货地址是否有效")
-            .choice()
-                .when(new Predicate() {
-                    @Override
-                    public boolean matches(Exchange exchange) {
-                        /**判断是否需要检查库存*/
-                        return false;
-                    }
-                }).bean(productComponent)
-            .end()
+        from("direct:itemCheck")
+            .routingSlip().method(ItemCheckPredicate.class)
             .bean(productComponent, "checkInvalidItemDetail");
 
         /**营销组件*/

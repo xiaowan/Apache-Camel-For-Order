@@ -37,6 +37,8 @@ public class HelloController {
     @GetMapping("/preVirtualOrder")
     public PreOrderResultDTO preVirtualOrder() {
         PreVirtualOrder preVirtualOrder = new PreVirtualOrder();
+        preVirtualOrder.setOrderType("COMMON");
+        preVirtualOrder.setBizId("C_TERMINAL");
         List<SubmitItemInfoDTO> submitItemInfoDTOS = new ArrayList<>();
         SubmitItemInfoDTO submitItemInfoDTO = new SubmitItemInfoDTO();
         submitItemInfoDTO.setItemCode("23ead980xaa3");

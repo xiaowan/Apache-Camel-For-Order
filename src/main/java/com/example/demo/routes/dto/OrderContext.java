@@ -1,5 +1,6 @@
 package com.example.demo.routes.dto;
 
+import com.example.demo.config.biz.OrderConfiguration;
 import com.example.demo.params.CommonOrder;
 import com.example.demo.params.internal.*;
 import lombok.Data;
@@ -13,6 +14,9 @@ import java.util.List;
  */
 @Data
 public class  OrderContext {
+
+    /**对应业务线的订单配置*/
+    private OrderConfiguration orderConfiguration;
 
     /**下单入参*/
     private CommonOrder commonOrder;
@@ -31,6 +35,9 @@ public class  OrderContext {
 
     /**优惠使用情况*/
     private List<String> discountComponent = new ArrayList<>();
+
+    /**item检查*/
+    private List<String> itemChecks = new ArrayList<>();
 
     /**提交订单后续动作*/
     private List<String> submitOrderOption = new ArrayList<>();

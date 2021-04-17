@@ -17,6 +17,8 @@ public class SubmitOrderResultDTO {
 
     private List<String> submitOrderOption;
 
+    private List<String> itemCheck;
+
     /**无效商品列表*/
     private List<ItemDetailDTO> invalidItemDetailDTOS;
 }

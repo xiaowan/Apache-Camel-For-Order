@@ -18,6 +18,7 @@ public class PreOrderResultComponent implements IProcessor<OrderContext> {
         PreOrderResultDTO preOrderResultDTO = new PreOrderResultDTO();
         preOrderResultDTO.setMerchantItemDTOList(orderContext.getMerchantItemDTOS());
         preOrderResultDTO.setUseDiscountComponents(orderContext.getDiscountComponent());
+        preOrderResultDTO.setItemCheck(orderContext.getItemChecks());
         preOrderResultDTO.setInvalidItemDetailDTOS(orderContext.getInvalidItemDetailDTOS());
 
         exchange.getIn().setBody(preOrderResultDTO, PreOrderResultDTO.class);

@@ -31,4 +31,36 @@ public class OrderConfiguration {
     /**item检查组件*/
     private List<ItemCheck> itemChecks;
 
+    /**
+     * 获取指定订单类型的item检查组件
+     * @param orderType
+     * @return
+     */
+    public List<String> getItemCheck(String orderType) {
+        if (itemChecks == null || itemChecks.size() == 0) {
+            return null;
+        }
+        for (ItemCheck itemCheck : itemChecks) {
+            if (itemCheck.getOrderType().equals(orderType)) {
+                return itemCheck.getItemCheckComponent();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取可用抵扣组件
+     */
+    public List<String> getDiscountComponent(String orderType) {
+        if (discounts == null || discounts.size() == 0) {
+            return null;
+        }
+        for (Discount discount : discounts) {
+            if (discount.getOrderType().equals(orderType)) {
+                return discount.getDiscountComponent();
+            }
+        }
+        return null;
+    }
+
 }

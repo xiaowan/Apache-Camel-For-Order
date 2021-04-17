@@ -14,6 +14,8 @@ public class PreOrderResultDTO {
 
     private List<String> useDiscountComponents;
 
+    private List<String> itemCheck;
+
     /**无效商品列表*/
     private List<ItemDetailDTO> invalidItemDetailDTOS;
 }
