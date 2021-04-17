@@ -25,7 +25,7 @@ import java.util.List;
 public class OrderInputParamConvertComponent {
 
     /**
-     * 普通提交订单
+     * 商品预订单/提交订单
      * @param commonOrder
      */
     public void generateSubmitItemInfo(@Body CommonOrder commonOrder, Exchange exchange) {
@@ -49,6 +49,11 @@ public class OrderInputParamConvertComponent {
         this.fillExchangeHeader(commonOrder, exchange);
     }
 
+    /**
+     * 购物车商品预订单/提交订单
+     * @param commonOrder
+     * @param exchange
+     */
     public void generateSubmitCartItemInfo(@Body CommonOrder commonOrder, Exchange exchange) {
         System.out.println(this.getClass().getName());
     }

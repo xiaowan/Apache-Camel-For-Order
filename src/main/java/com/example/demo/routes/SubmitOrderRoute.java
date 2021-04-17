@@ -75,7 +75,7 @@ public class SubmitOrderRoute extends RouteBuilder {
             .end()
             /**调用商品中心，组装商品详情*/
             .bean(productComponent)
-            /**调用商家中心，获取店铺详情*/
+            /**调用商家中心，获取店铺详情，按店铺分组item*/
             .bean(shopComponent)
             .enrich("direct:checkAvailability")
             //.bean("按照商家维度聚合itemDetail")

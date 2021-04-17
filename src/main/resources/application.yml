@@ -15,3 +15,68 @@ camel:
     name: ${spring.application.name}
     message-history: false
 
+order:
+  esUrl: http://www.baidu.com
+  stanch:
+    skipRickControl: false
+    skipGetShopGroupInfo: true
+  mq:
+    trade:
+      paidTag: 支付成功回调
+      refundedTag: 退货退款成功回调
+  orderConfiguration:
+    C_TERMINAL:
+      discounts:
+        -
+          orderType: COMMON
+          discountComponent:
+            - bean:useCouponComponent
+            - bean:useFundDiscountComponent
+            - bean:useGoldDiscountComponent
+            - bean:useMemberDiscountComponent
+        -
+          orderType: INQUIRY
+          discountComponent:
+            - bean:useCouponComponent
+            - bean:useFundDiscountComponent
+            - bean:useGoldDiscountComponent
+            - bean:useMemberDiscountComponent
+      itemChecks:
+        -
+          orderType: COMMON
+          itemCheckComponent:
+            - bean:MerchantCheckComponent
+            - bean:ItemCheckComponent
+            - bean:ItemPriceComponent
+      cartLimit:
+        singleItemLimit: 99
+        cartItemLimit: 99
+        shopItemLimit: 99
+      cancelDelay:
+        cancelSeconds: 900
+        aboutToCancel: 600
+      orderAmount:
+        -
+          orderType: COMMON
+          orderAmount: 100
+        -
+          orderType: INQUIRY
+          orderAmount: 200
+
+      stockCheck:
+        -
+          orderType: COMMON
+          checkStock: true
+          lockStock: true
+        -
+          orderType: INQUIRY
+          checkStock: true
+          lockStock: false
+
+      autoConfirmDelay:
+        -
+          orderType: COMMON
+          confirmSeconds: 200
+        -
+          orderType: INQUIRY
+          confirmSeconds: 500
