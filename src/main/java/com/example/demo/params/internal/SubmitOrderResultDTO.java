@@ -23,7 +23,7 @@ public class SubmitOrderResultDTO {
     private List<ItemDetailDTO> invalidItemDetailDTOS;
 
     /**订单纬度商品金额详情*/
-    private TotalInfoDTO totalInfoDTO;
+    private TotalInfoDTO totalInfoDTO = new TotalInfoDTO();
 
     /**所有资源列表*/
     private List<OrderResourceDTO> orderResourceDTOS;

@@ -13,6 +13,11 @@ import org.springframework.util.CollectionUtils;
  */
 public abstract class AbstractDiscountOperation {
 
+    /**
+     * 获取所有店铺下的有效item
+     * @param merchantItemDTOS
+     * @return
+     */
     public List<ItemDetailDTO> getValidItems(List<MerchantItemDTO> merchantItemDTOS) {
         List<ItemDetailDTO> itemDetailDTOS = new ArrayList<>();
         if (CollectionUtils.isEmpty(merchantItemDTOS)) {

@@ -42,5 +42,8 @@ public class  OrderContext {
     /**提交订单后续动作*/
     private List<String> submitOrderOption = new ArrayList<>();
 
+    /**订单维度金额，资源聚合*/
+    private TotalInfoDTO totalInfoDTO = new TotalInfoDTO();
+
 
 }

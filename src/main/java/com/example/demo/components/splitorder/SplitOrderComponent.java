@@ -15,7 +15,7 @@ public class SplitOrderComponent implements IProcessor<OrderContext> {
 
     @Override
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
-        /**拆单逻辑*/
+        /**拆单逻辑，暂无该实现*/
     }
 
 }

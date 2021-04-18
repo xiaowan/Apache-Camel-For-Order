@@ -20,6 +20,7 @@ public class PreOrderResultComponent extends AbstractResultOperation implements 
         preOrderResultDTO.setUseDiscountComponents(orderContext.getDiscountComponent());
         preOrderResultDTO.setItemCheck(orderContext.getItemChecks());
         preOrderResultDTO.setInvalidItemDetailDTOS(orderContext.getInvalidItemDetailDTOS());
+        preOrderResultDTO.setTotalInfoDTO(orderContext.getTotalInfoDTO());
 
         exchange.getIn().setBody(preOrderResultDTO, PreOrderResultDTO.class);
     }

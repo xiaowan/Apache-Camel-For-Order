@@ -6,6 +6,7 @@ import com.example.demo.components.order.ProductComponent;
 import com.example.demo.components.order.ShopComponent;
 import com.example.demo.components.result.PreOrderResultComponent;
 import com.example.demo.components.result.SubmitOrderResultComponent;
+import com.example.demo.components.result.SumInfoComponent;
 import com.example.demo.components.saveorder.AfterSubmitOrderComponent;
 import com.example.demo.components.fund.LockFundComponent;
 import com.example.demo.components.stock.LockStockComponent;
@@ -71,6 +72,9 @@ public class SubmitOrderRoute extends RouteBuilder {
     @Autowired
     private InvalidItemCheckComponent invalidItemCheckComponent;
 
+    @Autowired
+    private SumInfoComponent sumInfoComponent;
+
     @Override
     public void configure() throws Exception {
 
@@ -96,6 +100,8 @@ public class SubmitOrderRoute extends RouteBuilder {
             .filter().method(ShippingPredicate.class).bean(shippingComponent).end()
             /**拆单*/
             .bean(splitOrderComponent)
+            /**聚合所有信息，包含运费，资源，金额*/
+            .bean(sumInfoComponent)
             /**如果是预订单，直接返回，如果是提交订单，执行后续流程*/
             .choice()
                 .when(header("operationType").isEqualTo(PreOrder.class.getSimpleName()))

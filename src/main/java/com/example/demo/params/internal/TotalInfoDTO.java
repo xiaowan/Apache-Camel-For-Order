@@ -1,5 +1,8 @@
 package com.example.demo.params.internal;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -20,6 +23,9 @@ public class TotalInfoDTO {
 
     /**总商品金额*/
     private Integer totalItemRealPrice = 0;
+
+    /**使用的资源*/
+    private List<OrderResourceDTO> orderResources = new ArrayList<>();
 
     /**
      * 计算订单金额
