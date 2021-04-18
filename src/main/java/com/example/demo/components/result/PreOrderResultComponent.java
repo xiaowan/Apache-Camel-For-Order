@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @date 2021/3/6 下午10:48
  */
 @Component
-public class PreOrderResultComponent implements IProcessor<OrderContext> {
+public class PreOrderResultComponent extends AbstractResultOperation implements IProcessor<OrderContext> {
     @Override
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
         PreOrderResultDTO preOrderResultDTO = new PreOrderResultDTO();
@@ -23,4 +23,5 @@ public class PreOrderResultComponent implements IProcessor<OrderContext> {
 
         exchange.getIn().setBody(preOrderResultDTO, PreOrderResultDTO.class);
     }
+
 }

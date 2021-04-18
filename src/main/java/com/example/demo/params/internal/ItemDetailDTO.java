@@ -1,5 +1,8 @@
 package com.example.demo.params.internal;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -52,8 +55,29 @@ public class ItemDetailDTO {
     /**库存数量*/
     private Integer stock;
 
+    /**购买该item使用的资源*/
+    private List<OrderResourceDTO> orderResources = new ArrayList<>();
+
     public Integer sumItemRealPrice() {
         return this.num * this.realPrice;
     }
+
+    /**
+     * 添加使用的资源
+     * @param resourceEnum
+     * @param resourceId
+     * @param amount
+     */
+    public void addOrderResource(ResourceEnum resourceEnum, Long resourceId, Integer amount) {
+        OrderResourceDTO orderResourceDTO = new OrderResourceDTO();
+        orderResourceDTO.setResourceType(resourceEnum.getResourceType());
+        orderResourceDTO.setResourceId(resourceId);
+        orderResourceDTO.setAmount(amount);
+        this.orderResources.add(orderResourceDTO);
+        if (resourceEnum.getDiscountFlag()) {
+            this.discountAmount += amount;
+        }
+    }
+
 
 }

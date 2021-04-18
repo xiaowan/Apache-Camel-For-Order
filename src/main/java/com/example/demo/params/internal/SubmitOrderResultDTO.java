@@ -21,4 +21,10 @@ public class SubmitOrderResultDTO {
 
     /**无效商品列表*/
     private List<ItemDetailDTO> invalidItemDetailDTOS;
+
+    /**订单纬度商品金额详情*/
+    private TotalInfoDTO totalInfoDTO;
+
+    /**所有资源列表*/
+    private List<OrderResourceDTO> orderResourceDTOS;
 }

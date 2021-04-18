@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @date 2021/3/6 下午10:48
  */
 @Component
-public class SubmitOrderResultComponent implements IProcessor<OrderContext> {
+public class SubmitOrderResultComponent extends AbstractResultOperation implements IProcessor<OrderContext> {
     @Override
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
         SubmitOrderResultDTO submitOrderResultDTO = new SubmitOrderResultDTO();
