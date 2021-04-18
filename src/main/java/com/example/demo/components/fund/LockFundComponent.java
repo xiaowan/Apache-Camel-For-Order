@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 public class LockFundComponent implements IProcessor<OrderContext> {
     @Override
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
+        System.out.println("冻结资产中心资产");
         orderContext.getSubmitOrderOption().add("预先锁定资产中心资源");
     }
 

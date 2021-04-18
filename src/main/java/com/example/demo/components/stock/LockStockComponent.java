@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 public class LockStockComponent extends AbstractStockOperation implements IProcessor<OrderContext> {
     @Override
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
+        System.out.println("冻结库存中心库存");
         orderContext.getSubmitOrderOption().add("预先锁定库存");
     }
 
