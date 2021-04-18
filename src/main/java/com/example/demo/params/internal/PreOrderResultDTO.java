@@ -12,7 +12,7 @@ import java.util.List;
 public class PreOrderResultDTO {
 
     /**所有商家信息*/
-    private List<MerchantItemDTO> merchantItemDTOList;
+    private List<MerchantItemDTO> merchantItems;
 
     private List<String> useDiscountComponents;
 

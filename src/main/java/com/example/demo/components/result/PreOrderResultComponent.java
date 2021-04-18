@@ -16,13 +16,14 @@ public class PreOrderResultComponent extends AbstractResultOperation implements 
     @Override
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
         PreOrderResultDTO preOrderResultDTO = new PreOrderResultDTO();
-        preOrderResultDTO.setMerchantItemDTOList(orderContext.getMerchantItemDTOS());
+        preOrderResultDTO.setMerchantItems(orderContext.getMerchantItems());
         preOrderResultDTO.setUseDiscountComponents(orderContext.getDiscountComponent());
         preOrderResultDTO.setItemCheck(orderContext.getItemChecks());
-        preOrderResultDTO.setInvalidItemDetailDTOS(orderContext.getInvalidItemDetailDTOS());
+        preOrderResultDTO.setInvalidItemDetailDTOS(orderContext.getInvalidItemDetails());
         preOrderResultDTO.setTotalInfoDTO(orderContext.getTotalInfoDTO());
 
         exchange.getIn().setBody(preOrderResultDTO, PreOrderResultDTO.class);
+
     }
 
 }

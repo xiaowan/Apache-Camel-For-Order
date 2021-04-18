@@ -25,8 +25,8 @@ public abstract class AbstractDiscountOperation {
         }
 
         merchantItemDTOS.stream()
-            .filter(merchantItem -> !CollectionUtils.isEmpty(merchantItem.getItemDetailDTOList()))
-            .map(merchantItem -> itemDetailDTOS.addAll(merchantItem.getItemDetailDTOList()))
+            .filter(merchantItem -> !CollectionUtils.isEmpty(merchantItem.getItemDetails()))
+            .map(merchantItem -> itemDetailDTOS.addAll(merchantItem.getItemDetails()))
             .collect(Collectors.toList());
 
         return itemDetailDTOS;

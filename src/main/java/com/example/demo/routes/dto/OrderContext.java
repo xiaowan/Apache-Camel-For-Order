@@ -28,10 +28,10 @@ public class  OrderContext {
     private List<ItemDetailDTO> itemDetailDTOS;
 
     /**商家维度商品聚合*/
-    private List<MerchantItemDTO> merchantItemDTOS;
+    private List<MerchantItemDTO> merchantItems;
 
     /**无效商品列表*/
-    private List<ItemDetailDTO> invalidItemDetailDTOS;
+    private List<ItemDetailDTO> invalidItemDetails;
 
     /**优惠使用情况*/
     private List<String> discountComponent = new ArrayList<>();

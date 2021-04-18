@@ -22,7 +22,7 @@ public class UseCouponComponent extends AbstractDiscountOperation implements IPr
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
         orderContext.getDiscountComponent().add("使用优惠券优惠");
 
-        List<ItemDetailDTO> itemDetailDTOList = this.getValidItems(orderContext.getMerchantItemDTOS());
+        List<ItemDetailDTO> itemDetailDTOList = this.getValidItems(orderContext.getMerchantItems());
 
         if (!CollectionUtils.isEmpty(itemDetailDTOList)) {
             itemDetailDTOList.stream()

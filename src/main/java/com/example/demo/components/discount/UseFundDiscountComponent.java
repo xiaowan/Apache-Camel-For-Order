@@ -21,7 +21,7 @@ public class UseFundDiscountComponent extends AbstractDiscountOperation implemen
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
         orderContext.getDiscountComponent().add("使用资产进行抵扣");
 
-        List<ItemDetailDTO> itemDetailDTOList = this.getValidItems(orderContext.getMerchantItemDTOS());
+        List<ItemDetailDTO> itemDetailDTOList = this.getValidItems(orderContext.getMerchantItems());
 
         if (!CollectionUtils.isEmpty(itemDetailDTOList)) {
             itemDetailDTOList.stream()

@@ -16,27 +16,27 @@ camel:
     message-history: false
 
 order:
-  esUrl: http://www.baidu.com
+  es-url: http://www.baidu.com
   stanch:
     skipRickControl: false
     skipGetShopGroupInfo: true
   mq:
     trade:
-      paidTag: Tag_newc-dev_share_order_paidTag
-      refundedTag: Tag_newc-dev_share_order_refundedTag
-  orderConfiguration:
+      paid-tag: Tag_newc-dev_share_order_paidTag
+      refunded-tag: Tag_newc-dev_share_order_refundedTag
+  order-configuration:
     C_TERMINAL:
       discounts:
         -
-          orderType: COMMON
-          discountComponent:
+          order-type: COMMON
+          discount-component:
             - bean:useGoldDiscountComponent
             - bean:useMemberDiscountComponent
             - bean:useCouponComponent
             - bean:useFundDiscountComponent
-      itemChecks:
+      item-checks:
         -
-          orderType: COMMON
+          order-type: COMMON
           itemCheckComponent:
             - bean:riskControlComponent
             - bean:merchantItemCheckComponent

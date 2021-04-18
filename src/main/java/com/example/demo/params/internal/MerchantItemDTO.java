@@ -24,7 +24,7 @@ public class MerchantItemDTO {
     private String shopIcon;
 
     /**商品详情列表*/
-    private List<ItemDetailDTO> itemDetailDTOList;
+    private List<ItemDetailDTO> itemDetails;
 
     /**商家无效类型*/
     private String invalid;

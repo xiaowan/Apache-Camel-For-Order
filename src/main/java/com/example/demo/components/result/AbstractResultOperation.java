@@ -25,10 +25,10 @@ public abstract class AbstractResultOperation {
 
         List<OrderResourceDTO> orderResourceDTOS = new ArrayList<>();
         for (MerchantItemDTO merchantItemDTO : merchantItemDTOS) {
-            if (CollectionUtils.isEmpty(merchantItemDTO.getItemDetailDTOList())) {
+            if (CollectionUtils.isEmpty(merchantItemDTO.getItemDetails())) {
                 continue;
             }
-            for (ItemDetailDTO itemDetailDTO : merchantItemDTO.getItemDetailDTOList()) {
+            for (ItemDetailDTO itemDetailDTO : merchantItemDTO.getItemDetails()) {
                 if (CollectionUtils.isEmpty(itemDetailDTO.getOrderResources())) {
                     continue;
                 }
@@ -48,11 +48,11 @@ public abstract class AbstractResultOperation {
         }
 
         for (MerchantItemDTO merchantItemDTO : merchantItemDTOS) {
-            if (CollectionUtils.isEmpty(merchantItemDTO.getItemDetailDTOList())) {
+            if (CollectionUtils.isEmpty(merchantItemDTO.getItemDetails())) {
                 continue;
             }
             List<OrderResourceDTO> orderResourceDTOS = new ArrayList<>();
-            for (ItemDetailDTO itemDetailDTO : merchantItemDTO.getItemDetailDTOList()) {
+            for (ItemDetailDTO itemDetailDTO : merchantItemDTO.getItemDetails()) {
                 if (CollectionUtils.isEmpty(itemDetailDTO.getOrderResources())) {
                     continue;
                 }

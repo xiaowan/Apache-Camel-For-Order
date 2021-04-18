@@ -16,10 +16,10 @@ public class SubmitOrderResultComponent extends AbstractResultOperation implemen
     @Override
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
         SubmitOrderResultDTO submitOrderResultDTO = new SubmitOrderResultDTO();
-        submitOrderResultDTO.setMerchantItemDTOList(orderContext.getMerchantItemDTOS());
+        submitOrderResultDTO.setMerchantItemDTOList(orderContext.getMerchantItems());
         submitOrderResultDTO.setDiscountComponent(orderContext.getDiscountComponent());
         submitOrderResultDTO.setSubmitOrderOption(orderContext.getSubmitOrderOption());
-        submitOrderResultDTO.setInvalidItemDetailDTOS(orderContext.getInvalidItemDetailDTOS());
+        submitOrderResultDTO.setInvalidItemDetailDTOS(orderContext.getInvalidItemDetails());
         submitOrderResultDTO.setItemCheck(orderContext.getItemChecks());
 
         exchange.getIn().setBody(submitOrderResultDTO, SubmitOrderResultDTO.class);

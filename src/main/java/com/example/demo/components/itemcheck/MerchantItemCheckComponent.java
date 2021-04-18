@@ -17,7 +17,7 @@ import java.util.List;
 public class MerchantItemCheckComponent implements IProcessor<OrderContext> {
     @Override
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
-        List<MerchantItemDTO> merchantItemDTOS = orderContext.getMerchantItemDTOS();
+        List<MerchantItemDTO> merchantItemDTOS = orderContext.getMerchantItems();
         for (MerchantItemDTO merchantItemDTO : merchantItemDTOS) {
             if (ThreadLocalRandom.current().nextBoolean()) {
                 merchantItemDTO.setInvalid("无效商家原因");

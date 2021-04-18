@@ -78,14 +78,14 @@ public class ProductComponent implements IProcessor<OrderContext> {
      * @param exchange
      */
     public void checkInvalidItemDetail(@Body OrderContext orderContext, Exchange exchange) {
-        List<MerchantItemDTO> merchantItemDTOS = orderContext.getMerchantItemDTOS();
+        List<MerchantItemDTO> merchantItemDTOS = orderContext.getMerchantItems();
         if (CollectionUtils.isEmpty(merchantItemDTOS)) {
             return;
         }
 
         List<ItemDetailDTO> invalidItemDetailDTO = new ArrayList<>();
         for (MerchantItemDTO merchantItemDTO : merchantItemDTOS) {
-            List<ItemDetailDTO> itemDetailDTOS = merchantItemDTO.getItemDetailDTOList();
+            List<ItemDetailDTO> itemDetailDTOS = merchantItemDTO.getItemDetails();
             if (CollectionUtils.isEmpty(itemDetailDTOS)) {
                 continue;
             }
@@ -99,6 +99,6 @@ public class ProductComponent implements IProcessor<OrderContext> {
             }
         }
 
-        orderContext.setInvalidItemDetailDTOS(invalidItemDetailDTO);
+        orderContext.setInvalidItemDetails(invalidItemDetailDTO);
     }
 }

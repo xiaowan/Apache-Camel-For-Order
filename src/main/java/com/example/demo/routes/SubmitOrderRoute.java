@@ -106,13 +106,10 @@ public class SubmitOrderRoute extends RouteBuilder {
             .end();
 
         /**下单校验，包含itemDetail有效性，收货地址有效性等*/
-        from("direct:itemCheck")
-            .routingSlip().method(ItemCheckPredicate.class)
-            .bean(invalidItemCheckComponent);
+        from("direct:itemCheck").routingSlip().method(ItemCheckPredicate.class).bean(invalidItemCheckComponent);
 
         /**营销组件*/
-        from("direct:useDiscount")
-            .routingSlip().method(UseDiscountPredicate.class);
+        from("direct:useDiscount").routingSlip().method(UseDiscountPredicate.class);
 
         /**提交订单后续流程,目前该流程未开启事务，如需开启，需配置spring事务管理器*/
         from("direct:saveOrder")

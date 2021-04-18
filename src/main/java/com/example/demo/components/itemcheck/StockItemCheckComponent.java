@@ -20,8 +20,8 @@ public class StockItemCheckComponent implements IProcessor<OrderContext> {
     @Override
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
         List<ItemDetailDTO> itemDetailDTOList = new ArrayList<>();
-        for (MerchantItemDTO merchantItemDTO : orderContext.getMerchantItemDTOS()) {
-            itemDetailDTOList.addAll(merchantItemDTO.getItemDetailDTOList());
+        for (MerchantItemDTO merchantItemDTO : orderContext.getMerchantItems()) {
+            itemDetailDTOList.addAll(merchantItemDTO.getItemDetails());
         }
         for (ItemDetailDTO itemDetailDTO : itemDetailDTOList) {
             if (itemDetailDTO.getInvalid()) {

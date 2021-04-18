@@ -17,10 +17,10 @@ public class SumInfoComponent extends AbstractResultOperation implements IProces
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
 
         /**使用资源聚合到商家维度*/
-        this.calculateOrderResourceOnMerchant(orderContext.getMerchantItemDTOS());
+        this.calculateOrderResourceOnMerchant(orderContext.getMerchantItems());
 
         /**使用资源情况聚合到订单维度*/
-        orderContext.getTotalInfoDTO().setOrderResources(this.calculateOrderResourceOnOrder(orderContext.getMerchantItemDTOS()));
+        orderContext.getTotalInfoDTO().setOrderResources(this.calculateOrderResourceOnOrder(orderContext.getMerchantItems()));
 
     }
 

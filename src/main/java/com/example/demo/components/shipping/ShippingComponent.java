@@ -32,13 +32,13 @@ public class ShippingComponent implements IProcessor<OrderContext> {
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
 
         /**将item纬度金额汇总至商家纬度*/
-        shopComponent.calculateMerchantTotalInfo(orderContext.getMerchantItemDTOS());
+        shopComponent.calculateMerchantTotalInfo(orderContext.getMerchantItems());
 
         /**调用TMS获取运费*/
-        this.getShippingAmount(orderContext.getMerchantItemDTOS());
+        this.getShippingAmount(orderContext.getMerchantItems());
 
         /**均摊运费*/
-        this.distrubuteShippingAmount(orderContext.getMerchantItemDTOS());
+        this.distrubuteShippingAmount(orderContext.getMerchantItems());
     }
 
     private void getShippingAmount(List<MerchantItemDTO> merchantItemDTOS) {
@@ -66,7 +66,7 @@ public class ShippingComponent implements IProcessor<OrderContext> {
             TotalInfoDTO totalInfoDTO = merchantItemDTO.getTotalInfoDTO();
             int remainShippingAmount = totalInfoDTO.getShippingAmount();
             int index = 1;
-            for (ItemDetailDTO itemDetailDTO : merchantItemDTO.getItemDetailDTOList()) {
+            for (ItemDetailDTO itemDetailDTO : merchantItemDTO.getItemDetails()) {
                 BigDecimal shippingRate = new BigDecimal(itemDetailDTO.sumItemRealPrice() - itemDetailDTO.getDiscountAmount());
                 if (shippingRate.doubleValue() > 0) {
                     shippingRate = shippingRate.divide(BigDecimal.valueOf(totalInfoDTO.getOrderAmount()), 2, BigDecimal.ROUND_HALF_UP);
@@ -74,7 +74,7 @@ public class ShippingComponent implements IProcessor<OrderContext> {
 
                 int itemShippingAmount = shippingRate.multiply(BigDecimal.valueOf(totalInfoDTO.getShippingAmount())).setScale(2, BigDecimal.ROUND_HALF_UP).intValue();
                 /**运费大于剩余运费，或者最后一件商品单独处理*/
-                if (remainShippingAmount < itemShippingAmount || index == merchantItemDTO.getItemDetailDTOList().size()) {
+                if (remainShippingAmount < itemShippingAmount || index == merchantItemDTO.getItemDetails().size()) {
                     itemShippingAmount = remainShippingAmount;
                 }
 

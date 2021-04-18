@@ -35,10 +35,10 @@ public class ShopComponent implements IProcessor<OrderContext> {
                 merchantItemDTO = this.buildMerchantItemDTO(itemDetailDTO);
                 merchantItemDTOMap.put(itemDetailDTO.getShopId(), merchantItemDTO);
             }
-            merchantItemDTO.getItemDetailDTOList().add(itemDetailDTO);
+            merchantItemDTO.getItemDetails().add(itemDetailDTO);
         }
 
-        orderContext.setMerchantItemDTOS(new ArrayList<>(merchantItemDTOMap.values()));
+        orderContext.setMerchantItems(new ArrayList<>(merchantItemDTOMap.values()));
         /**将未分组的itemDetail清空*/
         orderContext.setItemDetailDTOS(null);
     }
@@ -52,7 +52,7 @@ public class ShopComponent implements IProcessor<OrderContext> {
         MerchantItemDTO merchantItemDTO = new MerchantItemDTO();
         merchantItemDTO.setMerchantId(itemDetailDTO.getMerchantId());
         merchantItemDTO.setShopId(itemDetailDTO.getShopId());
-        merchantItemDTO.setItemDetailDTOList(new ArrayList<>());
+        merchantItemDTO.setItemDetails(new ArrayList<>());
         merchantItemDTO.setShopName("店铺名称");
         merchantItemDTO.setShopIcon("https://camel.apache.org/_/img/logo-d.svg");
         merchantItemDTO.setTotalInfoDTO(new TotalInfoDTO());
@@ -68,7 +68,7 @@ public class ShopComponent implements IProcessor<OrderContext> {
             Integer totalDiscountAmount = 0;
             Integer totalShippingAmount = 0;
             Integer totalItemRealPrice = 0;
-            for (ItemDetailDTO itemDetailDTO : merchantItemDTO.getItemDetailDTOList()) {
+            for (ItemDetailDTO itemDetailDTO : merchantItemDTO.getItemDetails()) {
                 totalDiscountAmount += itemDetailDTO.getDiscountAmount();
                 totalShippingAmount += itemDetailDTO.getShippingAmount();
                 totalItemRealPrice += itemDetailDTO.sumItemRealPrice();
