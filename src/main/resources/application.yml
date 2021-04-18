@@ -57,7 +57,7 @@ order:
         -
           orderType: COMMON
           checkStock: true
-          lockStock: true
+          lockStock: false
       autoConfirmDelay:
         -
           orderType: COMMON

@@ -6,15 +6,18 @@ import com.example.demo.components.order.ShopComponent;
 import com.example.demo.components.result.PreOrderResultComponent;
 import com.example.demo.components.result.SubmitOrderResultComponent;
 import com.example.demo.components.saveorder.AfterSubmitOrderComponent;
-import com.example.demo.components.saveorder.PreLockFundComponent;
-import com.example.demo.components.saveorder.PreLockStockComponent;
+import com.example.demo.components.fund.LockFundComponent;
+import com.example.demo.components.stock.LockStockComponent;
 import com.example.demo.components.saveorder.SaveOrderComponent;
 import com.example.demo.components.shipping.ShippingComponent;
+import com.example.demo.components.splitorder.SplitOrderComponent;
 import com.example.demo.params.pre.PreCartOrder;
 import com.example.demo.params.pre.PreOrder;
 import com.example.demo.params.submit.*;
+import com.example.demo.routes.dto.OrderContext;
 import com.example.demo.routes.predicate.ItemCheckPredicate;
 import com.example.demo.routes.predicate.ShippingPredicate;
+import com.example.demo.routes.predicate.StockPredicate;
 import com.example.demo.routes.predicate.UseDiscountPredicate;
 import org.apache.camel.Exchange;
 import org.apache.camel.Predicate;
@@ -53,13 +56,16 @@ public class SubmitOrderRoute extends RouteBuilder {
     private SaveOrderComponent saveOrderComponent;
 
     @Autowired
-    private PreLockFundComponent preLockFundComponent;
+    private LockFundComponent lockFundComponent;
 
     @Autowired
-    private PreLockStockComponent preLockStockComponent;
+    private LockStockComponent lockStockComponent;
 
     @Autowired
     private AfterSubmitOrderComponent afterSubmitOrderComponent;
+
+    @Autowired
+    private SplitOrderComponent splitOrderComponent;
 
     @Override
     public void configure() throws Exception {
@@ -82,9 +88,10 @@ public class SubmitOrderRoute extends RouteBuilder {
             .enrich("direct:itemCheck")
             /**营销相关*/
             .enrich("direct:useDiscount")
-            // 获取运费，均摊运费
+            /**获取运费，均摊运费*/
             .filter().method(ShippingPredicate.class).bean(shippingComponent).end()
-            //.bean("拆单")
+            /**拆单*/
+            .bean(splitOrderComponent)
             /**如果是预订单，直接返回，如果是提交订单，执行后续流程*/
             .choice()
                 .when(header("operationType").isEqualTo(PreOrder.class.getSimpleName()))
@@ -104,16 +111,9 @@ public class SubmitOrderRoute extends RouteBuilder {
         /**提交订单后续流程*/
         from("direct:saveOrder")
             .bean(saveOrderComponent)
-            .bean(preLockFundComponent)
-            .choice()
-                .when(new Predicate() {
-                    @Override
-                    public boolean matches(Exchange exchange) {
-                        /**判断是否需要扣库存*/
-                        return false;
-                    }
-                }).bean(preLockStockComponent)
-            .end()
+            .bean(lockFundComponent)
+            /**是否操作库存*/
+            .filter().method(StockPredicate.class).bean(lockStockComponent).end()
             .bean(afterSubmitOrderComponent)
             .bean(submitOrderResultComponent);
     }

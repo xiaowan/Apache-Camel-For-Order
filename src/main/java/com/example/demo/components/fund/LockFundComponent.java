@@ -1,4 +1,4 @@
-package com.example.demo.components.saveorder;
+package com.example.demo.components.fund;
 
 import com.example.demo.routes.dto.IProcessor;
 import com.example.demo.routes.dto.OrderContext;
@@ -11,9 +11,10 @@ import org.springframework.stereotype.Component;
  * @date 2021/3/6 下午11:28
  */
 @Component
-public class PreLockStockComponent implements IProcessor<OrderContext> {
+public class LockFundComponent implements IProcessor<OrderContext> {
     @Override
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
-        orderContext.getSubmitOrderOption().add("预先锁定库存");
+        orderContext.getSubmitOrderOption().add("预先锁定资产中心资源");
     }
+
 }

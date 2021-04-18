@@ -67,6 +67,8 @@ public class HelloController {
     @GetMapping("/submitOrder")
     public SubmitOrderResultDTO submitOrder() {
         SubmitActualOrder submitActualOrder = new SubmitActualOrder();
+        submitActualOrder.setOrderType("COMMON");
+        submitActualOrder.setBizId("C_TERMINAL");
         List<SubmitItemInfoDTO> submitItemInfoDTOS = new ArrayList<>();
         SubmitItemInfoDTO submitItemInfoDTO = new SubmitItemInfoDTO();
         submitItemInfoDTO.setItemCode("23ead980xaa3");

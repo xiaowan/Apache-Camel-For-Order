@@ -63,4 +63,21 @@ public class OrderConfiguration {
         return null;
     }
 
+    /**
+     * 指定订单类型的库存配置
+     */
+    public StockCheck getStockCheckConfig(String orderType) {
+        if (stockCheck == null || stockCheck.size() == 0) {
+            return null;
+        }
+        for (StockCheck tmpStockCheck : stockCheck) {
+            if (orderType.equals(tmpStockCheck.getOrderType())) {
+                return tmpStockCheck;
+            }
+        }
+
+        return null;
+    }
+
+
 }
