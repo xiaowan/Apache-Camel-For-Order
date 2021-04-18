@@ -93,7 +93,6 @@ public class SubmitOrderRoute extends RouteBuilder {
             .bean(unLockStockComponent)
             .bean(unLockFundComponent);
 
-
         /**订单下单引擎*/
         from("direct:orderEngine")
             .choice()
