@@ -49,7 +49,9 @@ public class ShippingComponent implements IProcessor<OrderContext> {
 
         /**调用TMS获取运费,将运费设置到MerchantItem中*/
         for (MerchantItemDTO merchantItemDTO : merchantItemDTOS) {
-            merchantItemDTO.getTotalInfoDTO().setShippingAmount(ThreadLocalRandom.current().nextInt(40, 80));
+            TotalInfoDTO totalInfoDTO = merchantItemDTO.getTotalInfoDTO();
+            totalInfoDTO.setShippingAmount(ThreadLocalRandom.current().nextInt(40, 80));
+            totalInfoDTO.calculateOrderAmount();
         }
 
     }
@@ -64,9 +66,14 @@ public class ShippingComponent implements IProcessor<OrderContext> {
         }
         for (MerchantItemDTO merchantItemDTO : merchantItemDTOList) {
             TotalInfoDTO totalInfoDTO = merchantItemDTO.getTotalInfoDTO();
+            /**0元运费不走分摊逻辑*/
+            if (totalInfoDTO.getShippingAmount() == 0) {
+                continue;
+            }
             int remainShippingAmount = totalInfoDTO.getShippingAmount();
             int index = 1;
             for (ItemDetailDTO itemDetailDTO : merchantItemDTO.getItemDetails()) {
+                /**使用优惠后的商品金额计算*/
                 BigDecimal shippingRate = new BigDecimal(itemDetailDTO.sumItemRealPrice() - itemDetailDTO.getDiscountAmount());
                 if (shippingRate.doubleValue() > 0) {
                     shippingRate = shippingRate.divide(BigDecimal.valueOf(totalInfoDTO.getOrderAmount()), 2, BigDecimal.ROUND_HALF_UP);
