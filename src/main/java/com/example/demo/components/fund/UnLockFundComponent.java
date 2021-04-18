@@ -1,5 +1,6 @@
 package com.example.demo.components.fund;
 
+import com.example.demo.exception.ApiException;
 import com.example.demo.routes.dto.IProcessor;
 import com.example.demo.routes.dto.OrderContext;
 import org.apache.camel.Exchange;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 public class UnLockFundComponent implements IProcessor<OrderContext> {
     @Override
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
+        System.out.println("解锁资源");
         orderContext.getSubmitOrderOption().add("预先锁定资产中心资源");
     }
 

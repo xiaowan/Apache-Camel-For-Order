@@ -1,5 +1,6 @@
 package com.example.demo.routes;
 
+import com.example.demo.components.fund.UnLockFundComponent;
 import com.example.demo.components.itemcheck.InvalidItemCheckComponent;
 import com.example.demo.components.order.OrderInputParamConvertComponent;
 import com.example.demo.components.order.ProductComponent;
@@ -13,6 +14,9 @@ import com.example.demo.components.stock.LockStockComponent;
 import com.example.demo.components.saveorder.SaveOrderComponent;
 import com.example.demo.components.shipping.ShippingComponent;
 import com.example.demo.components.splitorder.SplitOrderComponent;
+import com.example.demo.components.stock.UnLockStockComponent;
+import com.example.demo.enums.ErrorEnum;
+import com.example.demo.exception.ApiException;
 import com.example.demo.params.pre.PreCartOrder;
 import com.example.demo.params.pre.PreOrder;
 import com.example.demo.params.submit.*;
@@ -20,6 +24,8 @@ import com.example.demo.routes.predicate.ItemCheckPredicate;
 import com.example.demo.routes.predicate.ShippingPredicate;
 import com.example.demo.routes.predicate.StockPredicate;
 import com.example.demo.routes.predicate.UseDiscountPredicate;
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -72,8 +78,21 @@ public class SubmitOrderRoute extends RouteBuilder {
     @Autowired
     private SumInfoComponent sumInfoComponent;
 
+    @Autowired
+    private UnLockFundComponent unLockFundComponent;
+
+    @Autowired
+    private UnLockStockComponent unLockStockComponent;
+
     @Override
     public void configure() throws Exception {
+
+        /**下单流程异常处理*/
+        onException(ApiException.class, Exception.class)
+            .handled(false)
+            .bean(unLockStockComponent)
+            .bean(unLockFundComponent);
+
 
         /**订单下单引擎*/
         from("direct:orderEngine")

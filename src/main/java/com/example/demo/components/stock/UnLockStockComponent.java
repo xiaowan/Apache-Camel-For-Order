@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 public class UnLockStockComponent extends AbstractStockOperation implements IProcessor<OrderContext> {
     @Override
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
+        System.out.println("解锁库存");
         orderContext.getSubmitOrderOption().add("预先锁定库存");
     }
 }
