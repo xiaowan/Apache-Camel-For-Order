@@ -87,7 +87,7 @@ public class SubmitOrderRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
-        /**下单流程异常处理*/
+        /**下单流程异常处理，解冻库存，解冻资产*/
         onException(ApiException.class, Exception.class)
             .handled(false)
             .bean(unLockStockComponent)

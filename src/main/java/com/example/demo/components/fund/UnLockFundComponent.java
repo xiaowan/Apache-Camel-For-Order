@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
 public class UnLockFundComponent implements IProcessor<OrderContext> {
     @Override
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
+        /**该组件内代码需自行保证不允许抛出异常*/
         System.out.println("解锁资源");
-        orderContext.getSubmitOrderOption().add("预先锁定资产中心资源");
     }
 
 }
