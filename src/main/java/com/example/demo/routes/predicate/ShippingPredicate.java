@@ -14,13 +14,7 @@ import org.apache.camel.Body;
 public class ShippingPredicate {
 
     public boolean predicate(@Body OrderContext orderContext) {
-        CommonOrder commonOrder = orderContext.getCommonOrder();
-        if (commonOrder instanceof PreVirtualOrder) {
-            return Boolean.FALSE;
-        }
-        if (commonOrder instanceof SubmitVirtualOrder) {
-            return Boolean.FALSE;
-        }
+        /**目前全部计算运费*/
         return Boolean.TRUE;
     }
 }

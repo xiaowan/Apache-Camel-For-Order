@@ -78,9 +78,9 @@ public class SubmitOrderRoute extends RouteBuilder {
             .bean(productComponent)
             /**调用商家中心，获取店铺详情，按店铺分组item*/
             .bean(shopComponent)
+            /**item检查，包含商家，商品库存，item价格变动*/
             .enrich("direct:itemCheck")
-            //.bean("按照商家维度聚合itemDetail")
-            /**营销流程*/
+            /**营销相关*/
             .enrich("direct:useDiscount")
             // 获取运费，均摊运费
             .filter().method(ShippingPredicate.class).bean(shippingComponent).end()

@@ -22,6 +22,18 @@ public class ItemDetailDTO {
     /**商品名称*/
     private String itemName;
 
+    /**原始售价*/
+    private Integer origPrice;
+
+    /**实际售价*/
+    private Integer realPrice;
+
+    /**所有的优惠金额*/
+    private Integer discountAmount = 0;
+
+    /**运费*/
+    private Integer shippingAmount = 0;
+
     /**价格id*/
     private Long priceId;
 
@@ -39,5 +51,9 @@ public class ItemDetailDTO {
 
     /**库存数量*/
     private Integer stock;
+
+    public Integer sumItemRealPrice() {
+        return this.num * this.realPrice;
+    }
 
 }

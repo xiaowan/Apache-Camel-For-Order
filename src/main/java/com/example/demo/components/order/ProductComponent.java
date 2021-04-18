@@ -54,6 +54,8 @@ public class ProductComponent implements IProcessor<OrderContext> {
         ItemDetailDTO itemDetailDTO = new ItemDetailDTO();
         itemDetailDTO.setItemCode(internalItemInfo.getItemCode());
         itemDetailDTO.setNum(internalItemInfo.getNum());
+        itemDetailDTO.setOrigPrice(ThreadLocalRandom.current().nextInt(40,45));
+        itemDetailDTO.setRealPrice(ThreadLocalRandom.current().nextInt(20, 25));
         itemDetailDTO.setThumbImg("https://www.baidu.com/img/PCpad_012830ebaa7e4379ce9a9ed1b71f7507.png");
         itemDetailDTO.setItemName(UUID.randomUUID().toString());
         itemDetailDTO.setActivityId(internalItemInfo.getActivityId());

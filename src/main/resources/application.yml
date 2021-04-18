@@ -38,6 +38,7 @@ order:
         -
           orderType: COMMON
           itemCheckComponent:
+            - bean:riskControlComponent
             - bean:merchantItemCheckComponent
             - bean:stockItemCheckComponent
             - bean:itemPriceCheckComponent

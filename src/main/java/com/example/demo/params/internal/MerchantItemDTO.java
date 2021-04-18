@@ -28,4 +28,7 @@ public class MerchantItemDTO {
 
     /**商家无效类型*/
     private String invalid;
+
+    /**商家纬度金额相关汇总*/
+    private TotalInfoDTO totalInfoDTO;
 }
