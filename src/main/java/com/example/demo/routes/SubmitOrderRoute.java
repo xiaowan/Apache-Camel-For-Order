@@ -129,8 +129,10 @@ public class SubmitOrderRoute extends RouteBuilder {
         /**营销组件*/
         from("direct:useDiscount").routingSlip().method(UseDiscountPredicate.class);
 
-        /**提交订单后续流程,目前该流程未开启事务，如需开启，需配置spring事务管理器*/
+        /**提交订单后续流程*/
         from("direct:saveOrder")
+            /**目前该流程未开启事务，如需开启，需配置spring事务管理器*/
+            // .transacted()
             .bean(saveOrderComponent)
             .bean(lockFundComponent)
             /**是否操作库存*/
