@@ -22,8 +22,8 @@ order:
     skipGetShopGroupInfo: true
   mq:
     trade:
-      paidTag: 支付成功回调
-      refundedTag: 退货退款成功回调
+      paidTag: Tag_newc-dev_share_order_paidTag
+      refundedTag: Tag_newc-dev_share_order_refundedTag
   orderConfiguration:
     C_TERMINAL:
       discounts:

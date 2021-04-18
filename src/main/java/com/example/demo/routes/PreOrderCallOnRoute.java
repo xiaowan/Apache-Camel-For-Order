@@ -13,11 +13,11 @@ public class PreOrderCallOnRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         /**下单入口*/
-        from("direct:preVirtualOrder").to("direct:aggregationInputOrderParam");
+        from("direct:preVirtualOrder").to("direct:orderEngine");
 
-        from("direct:preActualOrder").to("direct:aggregationInputOrderParam");
+        from("direct:preActualOrder").to("direct:orderEngine");
 
-        from("direct:preCartOrder").to("direct:aggregationInputOrderParam");
+        from("direct:preCartOrder").to("direct:orderEngine");
 
     }
 }

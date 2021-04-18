@@ -13,11 +13,11 @@ public class SubmitOrderCallOnRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         /**下单入口*/
-        from("direct:submitVirtualOrder").to("direct:aggregationInputOrderParam");
+        from("direct:submitVirtualOrder").to("direct:orderEngine");
 
-        from("direct:submitActualOrder").to("direct:aggregationInputOrderParam");
+        from("direct:submitActualOrder").to("direct:orderEngine");
 
-        from("direct:submitCartOrder").to("direct:aggregationInputOrderParam");
+        from("direct:submitCartOrder").to("direct:orderEngine");
 
 
 

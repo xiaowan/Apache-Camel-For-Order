@@ -1,5 +1,6 @@
 package com.example.demo.routes;
 
+import com.example.demo.components.itemcheck.InvalidItemCheckComponent;
 import com.example.demo.components.order.OrderInputParamConvertComponent;
 import com.example.demo.components.order.ProductComponent;
 import com.example.demo.components.order.ShopComponent;
@@ -67,11 +68,14 @@ public class SubmitOrderRoute extends RouteBuilder {
     @Autowired
     private SplitOrderComponent splitOrderComponent;
 
+    @Autowired
+    private InvalidItemCheckComponent invalidItemCheckComponent;
+
     @Override
     public void configure() throws Exception {
 
         /**聚合下单入参,目前该流程未开启事务，如需开启，需spring配置事务管理器*/
-        from("direct:aggregationInputOrderParam")
+        from("direct:orderEngine")
             // .transacted()
             .choice()
                 .when(bodyAs(PreCartOrder.class))
@@ -102,7 +106,7 @@ public class SubmitOrderRoute extends RouteBuilder {
         /**下单校验，包含itemDetail有效性，收货地址有效性等*/
         from("direct:itemCheck")
             .routingSlip().method(ItemCheckPredicate.class)
-            .bean(productComponent, "checkInvalidItemDetail");
+            .bean(invalidItemCheckComponent);
 
         /**营销组件*/
         from("direct:useDiscount")
