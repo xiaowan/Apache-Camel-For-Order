@@ -16,13 +16,10 @@ import com.example.demo.components.splitorder.SplitOrderComponent;
 import com.example.demo.params.pre.PreCartOrder;
 import com.example.demo.params.pre.PreOrder;
 import com.example.demo.params.submit.*;
-import com.example.demo.routes.dto.OrderContext;
 import com.example.demo.routes.predicate.ItemCheckPredicate;
 import com.example.demo.routes.predicate.ShippingPredicate;
 import com.example.demo.routes.predicate.StockPredicate;
 import com.example.demo.routes.predicate.UseDiscountPredicate;
-import org.apache.camel.Exchange;
-import org.apache.camel.Predicate;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -78,9 +75,8 @@ public class SubmitOrderRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
-        /**聚合下单入参,目前该流程未开启事务，如需开启，需spring配置事务管理器*/
+        /**订单下单引擎*/
         from("direct:orderEngine")
-            // .transacted()
             .choice()
                 .when(bodyAs(PreCartOrder.class))
                 .when(bodyAs(SubmitCartOrder.class))
@@ -118,7 +114,7 @@ public class SubmitOrderRoute extends RouteBuilder {
         from("direct:useDiscount")
             .routingSlip().method(UseDiscountPredicate.class);
 
-        /**提交订单后续流程*/
+        /**提交订单后续流程,目前该流程未开启事务，如需开启，需配置spring事务管理器*/
         from("direct:saveOrder")
             .bean(saveOrderComponent)
             .bean(lockFundComponent)
