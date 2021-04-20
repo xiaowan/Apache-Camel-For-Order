@@ -23,5 +23,7 @@ public class SubmitOrderResultComponent extends AbstractResultOperation implemen
         submitOrderResultDTO.setItemCheck(orderContext.getItemChecks());
 
         exchange.getIn().setBody(submitOrderResultDTO, SubmitOrderResultDTO.class);
+
+        orderContext = null;
     }
 }

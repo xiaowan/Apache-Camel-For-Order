@@ -24,7 +24,4 @@ public class PreOrderResultDTO {
     /**订单纬度商品金额详情*/
     private TotalInfoDTO totalInfoDTO;
 
-    /**订单使用的所有资源*/
-    private List<OrderResourceDTO> orderResourceDTOS;
-
 }
