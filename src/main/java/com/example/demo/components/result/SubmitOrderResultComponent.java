@@ -24,6 +24,7 @@ public class SubmitOrderResultComponent extends AbstractResultOperation implemen
 
         exchange.getIn().setBody(submitOrderResultDTO, SubmitOrderResultDTO.class);
 
+        /**防止内存泄漏*/
         orderContext = null;
     }
 }

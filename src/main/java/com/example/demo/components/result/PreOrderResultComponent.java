@@ -24,6 +24,7 @@ public class PreOrderResultComponent extends AbstractResultOperation implements 
 
         exchange.getIn().setBody(preOrderResultDTO, PreOrderResultDTO.class);
 
+        /**防止内存泄漏*/
         orderContext = null;
 
     }
