@@ -22,6 +22,6 @@ public class PreOrderResultDTO {
     private List<ItemDetailDTO> invalidItemDetailDTOS;
 
     /**订单纬度商品金额详情*/
-    private TotalInfoDTO totalInfoDTO;
+    private TotalInfoDTO totalInfoDTO = new TotalInfoDTO();
 
 }

@@ -15,12 +15,18 @@ import org.springframework.stereotype.Component;
 public class SubmitOrderResultComponent extends AbstractResultOperation implements IProcessor<OrderContext> {
     @Override
     public void execute(OrderContext orderContext, Exchange exchange) throws Exception {
+
+        /**使用资源聚合到商家维度*/
+        this.calculateOrderResourceOnMerchant(orderContext.getMerchantItems());
+
         SubmitOrderResultDTO submitOrderResultDTO = new SubmitOrderResultDTO();
         submitOrderResultDTO.setMerchantItemDTOList(orderContext.getMerchantItems());
         submitOrderResultDTO.setDiscountComponent(orderContext.getDiscountComponent());
         submitOrderResultDTO.setSubmitOrderOption(orderContext.getSubmitOrderOption());
         submitOrderResultDTO.setInvalidItemDetailDTOS(orderContext.getInvalidItemDetails());
         submitOrderResultDTO.setItemCheck(orderContext.getItemChecks());
+
+        submitOrderResultDTO.getTotalInfoDTO().setOrderResources(this.calculateOrderResourceOnOrder(orderContext.getMerchantItems()));
 
         exchange.getIn().setBody(submitOrderResultDTO, SubmitOrderResultDTO.class);
 

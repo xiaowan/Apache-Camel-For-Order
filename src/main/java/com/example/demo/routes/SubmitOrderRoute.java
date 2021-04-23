@@ -7,7 +7,6 @@ import com.example.demo.components.order.ProductComponent;
 import com.example.demo.components.order.ShopComponent;
 import com.example.demo.components.result.PreOrderResultComponent;
 import com.example.demo.components.result.SubmitOrderResultComponent;
-import com.example.demo.components.result.SumInfoComponent;
 import com.example.demo.components.saveorder.AfterSubmitOrderComponent;
 import com.example.demo.components.fund.LockFundComponent;
 import com.example.demo.components.stock.LockStockComponent;
@@ -15,7 +14,6 @@ import com.example.demo.components.saveorder.SaveOrderComponent;
 import com.example.demo.components.shipping.ShippingComponent;
 import com.example.demo.components.splitorder.SplitOrderComponent;
 import com.example.demo.components.stock.UnLockStockComponent;
-import com.example.demo.enums.ErrorEnum;
 import com.example.demo.exception.ApiException;
 import com.example.demo.params.pre.PreCartOrder;
 import com.example.demo.params.pre.PreOrder;
@@ -24,8 +22,6 @@ import com.example.demo.routes.predicate.ItemCheckPredicate;
 import com.example.demo.routes.predicate.ShippingPredicate;
 import com.example.demo.routes.predicate.StockPredicate;
 import com.example.demo.routes.predicate.UseDiscountPredicate;
-import org.apache.camel.Exchange;
-import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -76,9 +72,6 @@ public class SubmitOrderRoute extends RouteBuilder {
     private InvalidItemCheckComponent invalidItemCheckComponent;
 
     @Autowired
-    private SumInfoComponent sumInfoComponent;
-
-    @Autowired
     private UnLockFundComponent unLockFundComponent;
 
     @Autowired
@@ -114,8 +107,6 @@ public class SubmitOrderRoute extends RouteBuilder {
             .filter().method(ShippingPredicate.class).bean(shippingComponent).end()
             /**拆单*/
             .bean(splitOrderComponent)
-            /**聚合所有信息，包含运费，资源，金额*/
-            .bean(sumInfoComponent)
             /**如果是预订单，直接返回，如果是提交订单，执行后续流程*/
             .choice()
                 .when(header("operationType").isEqualTo(PreOrder.class.getSimpleName()))
